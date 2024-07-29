@@ -1,0 +1,27 @@
+.app {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.left-panel{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+  width: 20%;
+}
+
+.sidebar {
+  background-color: #f1f1f1;
+  overflow-y: auto;
+  width: 200px;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+}
+
+.droppable-area {
+  flex-grow: 1;
+  position: relative;
+}
