@@ -1,17 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useDrag } from 'react-dnd';
+import React, { useState, useRef, useEffect } from "react";
+import { useDrag } from "react-dnd";
 
 const ResizableHandle = ({ onMouseDown }) => (
   <div
     onMouseDown={onMouseDown}
     style={{
-      width: '10px',
-      height: '10px',
-      backgroundColor: '#333',
-      position: 'absolute',
-      right: '0',
-      bottom: '0',
-      cursor: 'se-resize',
+      width: "10px",
+      height: "10px",
+      backgroundColor: "#333",
+      position: "absolute",
+      right: "0",
+      bottom: "0",
+      cursor: "se-resize",
     }}
   />
 );
@@ -32,12 +32,13 @@ const DraggableItem = ({
   updateItemSize,
   onDrop,
 }) => {
+  console.log(id, text, x, y, width, height);
   const [isResizing, setIsResizing] = useState(false);
   const itemRef = useRef(null);
 
   const [{ isDragging }, drag] = useDrag(
     () => ({
-      type: 'ITEM',
+      type: "ITEM",
       item: { id, x, y, width, height },
       end: (item, monitor) => {
         if (monitor.didDrop() && onDrop) {
@@ -72,32 +73,32 @@ const DraggableItem = ({
 
   useEffect(() => {
     if (isResizing) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', stopResizing);
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", stopResizing);
     }
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', stopResizing);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", stopResizing);
     };
   }, [isResizing]);
 
   const style = {
-    position: 'absolute',
+    position: "absolute",
     left: snapToGrid(x),
     top: snapToGrid(y),
     width: snapToGrid(width),
     height: snapToGrid(height),
-    backgroundColor: '#4CAF50',
-    color: 'white',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: '4px',
-    cursor: isDragging ? 'move' : 'default',
+    backgroundColor: "#4CAF50",
+    color: "white",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: "4px",
+    cursor: isDragging ? "move" : "default",
     opacity: isDragging ? 0.5 : 1,
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-    transition: 'left 0.2s, top 0.2s, width 0.2s, height 0.2s',
-    overflow: 'hidden',
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+    transition: "left 0.2s, top 0.2s, width 0.2s, height 0.2s",
+    overflow: "hidden",
   };
 
   return (
